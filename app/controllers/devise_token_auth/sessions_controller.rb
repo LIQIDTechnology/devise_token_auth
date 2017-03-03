@@ -50,7 +50,7 @@ module DeviseTokenAuth
         yield @resource if block_given?
 
         render_create_success
-      elsif @resource && @resource.valid_password?(resource_params[:password]) && !(!@resource.respond_to?(:active_for_authentication?) || @resource.active_for_authentication?)
+      elsif @resource && @resource.valid_password?(resource_params[:password]) && !(!@resource.respond_to?(:confirmed?) || @resource.confirmed?)
         render_create_error_not_confirmed
       else
         render_create_error_bad_credentials
